@@ -91,7 +91,23 @@ public class MainComp extends JComponent {
 		repaint();
 	}
 
-	
+	//Draw the score
+	public void stats(Graphics2D g){
+		g.setFont(new Font("TimesRoman", Font.BOLD, 20));
+		g.setColor(Color.RED);
+		g.fill(new Rectangle2D.Double(0, 2, health/3, 15));
+		g.fill(new Rectangle2D.Double(0, 18, boost/4, 15));
+		
+		g.drawString("LEVEL: " + Integer.toString(speed), SHIP_INIT_X, getHeight()-29);
+		g.drawString("SCORE: " + Integer.toString(score), SHIP_INIT_X, getHeight()-10);
+		g.drawString("HIGHSCORE: " + Integer.toString(hScore), getWidth()*3/4  + 30, getHeight()-10);
+
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("TimesRoman", Font.BOLD, 13));
+		g.drawString("HEALTH: " + Integer.toString(health) +"/10000", 5, 13);
+		g.drawString("BOOST", 5, 30);
+		g.fill(new Rectangle2D.Double(0, 33, shotCooldown, 3));
+	}
 
 	//Draw method for end game
 	public void gameOver(Graphics2D g){
@@ -110,7 +126,7 @@ public class MainComp extends JComponent {
 			hScore = score;
 			g.drawString("NEW HIGHSCORE!", (getWidth()/3), getHeight()/2 + 130);
 		}
-		g.drawString("Ready PLAYER1?   Y/N", (getWidth()/3), getHeight()-10);
+		g.drawString("AGAIN? Y/N", (getWidth()/3), getHeight()-10);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -129,7 +145,7 @@ public class MainComp extends JComponent {
 			.forEach(a -> a.draw(g2));
 		lList.stream()
 			.forEach(a -> a.draw(g2));
-		
+		stats(g2);
 		if(end){
 			gameOver(g2);
 		}
