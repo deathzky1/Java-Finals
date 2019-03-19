@@ -28,7 +28,7 @@ public class MainComp extends JComponent {
 	private int hScore = 0;
 	private int health = 1000;
 	private int boost = 1000;
-	private int shotCooldown = 0;
+	private int shotCooldown = 250;
 
 	//Constructs parts of game component
 	public MainComp() {
