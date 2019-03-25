@@ -28,7 +28,7 @@ public class MainComp extends JComponent {
 	private int hScore = 0;
 	private int health = 1000;
 	private int boost = 1000;
-	private int shotCooldown = 0;
+	private int shotCooldown = 250;
 
 	//Constructs parts of game component
 	public MainComp() {
@@ -53,8 +53,8 @@ public class MainComp extends JComponent {
 			boost += 15;
 		}
 
-		if(shotCooldown < 100){
-			shotCooldown++;
+		if(shotCooldown < 249){
+			shotCooldown+=5;
 		}
 	}
 	//adds asteroids to the aList hashset
@@ -93,7 +93,7 @@ public class MainComp extends JComponent {
 
 	//Draw the score
 	public void stats(Graphics2D g){
-		g.setFont(new Font("TimesRoman", Font.BOLD, 20));
+		g.setFont(new Font("Sans-serif", Font.BOLD, 20));
 		g.setColor(Color.RED);
 		g.fill(new Rectangle2D.Double(0, 2, health/3, 15));
 		g.fill(new Rectangle2D.Double(0, 18, boost/4, 15));
@@ -103,7 +103,7 @@ public class MainComp extends JComponent {
 		g.drawString("HIGHSCORE: " + Integer.toString(hScore), getWidth()*3/4  + 30, getHeight()-10);
 
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("TimesRoman", Font.BOLD, 13));
+		g.setFont(new Font("Sans-serif", Font.BOLD, 13));
 		g.drawString("HEALTH: " + Integer.toString(health) +"/10000", 5, 13);
 		g.drawString("BOOST", 5, 30);
 		g.fill(new Rectangle2D.Double(0, 33, shotCooldown, 3));
@@ -240,7 +240,7 @@ public class MainComp extends JComponent {
 				case KeyEvent.VK_SPACE:
 					if(end == false && shotCooldown > 0){
 					makeLaser();
-					shotCooldown -= 5;
+					shotCooldown -= 10;
 					}
 					break;
 				case KeyEvent.VK_Y:
